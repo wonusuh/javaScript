@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>getterSetter</title>
+    <style>
+        body {
+            margin: 0;
+        }
+        .field {
+            background-color: tomato;
+            width: 500px;
+            height: 500px;
+        }
+        #me {
+            position: fixed;
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="field">
+        <button id="me">me</button>
+    </div>
+    <div>
+        <button id="up">u</button>
+        <button id="left">l</button>
+        <button id="right">r</button>
+        <button id="down">d</button>
+        <button id="reset">reset</button>
+    </div>
+    <script>
+        // var upb = document.getElementById("up");
+        // upb.onclick = up;
+
+        // var leftb = document.getElementById("left");
+        // leftb.onclick = left;
+
+        // var rightb = document.getElementById("right");
+        // rightb.onclick = right;
+
+        // var downb = document.getElementById("down");
+        // downb.onclick = down;
+        
+        // var resetb = document.getElementById("reset");
+        // resetb.onclick = reset;
+
+        var me = {
+            el : document.querySelector("#me"),
+            x : (Math.floor(Math.random() * 11)) * 50,
+            y : (Math.floor(Math.random() * 11)) * 50,
+            init : function() {
+                this.el.style.left = this.x + "px";
+                this.el.style.top = this.y + "px";
+            },
+        };
+        me.init();
+        
+        // function up() {
+        //     y -= 50;
+        //     meb.style.top = y + "px";
+        // }
+        // function left() {
+        //     x -= 50;
+        //     meb.style.left = x + "px";
+        // }
+        // function right() {
+        //     x += 50;
+        //     // if()
+        //     meb.style.left = x + "px";
+        // }
+        // function down() {
+        //     y += 50;
+        //     meb.style.top = y + "px";
+        // }
+        // function reset() {
+        //     x = (Math.floor(Math.random() * 11)) * 50;
+        //     y = (Math.floor(Math.random() * 11)) * 50;
+        //     meb.style.left = x + "px";
+        //     meb.style.top = y + "px";
+        // }
+    </script>
+</body>
+</html>

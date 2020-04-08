@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script>
+        // 배열
+        var box = [1,2,4,6,7,9];
+        var txt = ""; // 리터럴
+        // var i;
+        // for(초기값;반복조건;증감){} // scope를 가지지 않는다.
+        // i++ --> i = i + 1;
+        // for(i=0;i<5;i++){
+        for(var i=0;i<box.length;i++){
+            name = "ho";
+            console.log(txt += i);
+        }
+
+        function myFn() {
+            for(;i<5;i++){
+                name = "ha"; // 전역
+                var name = "hi"; // 지역 함수가 실행되는 동안에만 존재
+                console.log(txt += i);
+            }   
+        }
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

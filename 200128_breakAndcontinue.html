@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>breakAndcontinue</title>
+</head>
+<body>
+    <script>
+        // break를 만나면 반복문을 ‘종료’하고 빠져나온다.
+        for(i=0;i<5;i++){
+            console.log('a'+i);
+            if(i>2){
+                break;
+            }
+            console.log('b'+i);
+        }
+
+        // coutinue를 만나면 반복문을 ‘중지’하고 다시 시작한다.
+        for(i=0;i<5;i++){
+            console.log("c"+i);
+            if(i>2){
+                continue;
+            }
+            console.log("d"+i);
+        }
+    </script>
+</body>
+</html>

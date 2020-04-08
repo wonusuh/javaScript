@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <textarea name="" id="" cols="80" rows="10"></textarea>
+    </div>
+    <div>
+        <label for="">검색어를 입력: </label>
+        <input type="text" id="search_id">
+        <button onclick="wordCount()" id="search_id">찾기</button>
+    </div>
+    <div class="">총 <span id="count_id"></span>개가 있습니다.</div>
+    <script>
+        function wordCount() {
+            var txt = document.getElementsByTagName('textarea')[0].value;
+            var sword = document.getElementById('search_id').value;
+            var count_el = document.getElementById('count_id');
+            var idx = 0;
+            var count = 0;
+            if (!sword) {
+                console.log("검색어가 비어 있습니다.")
+                return
+            }
+            while(true) {
+                idx = txt.indexOf(sword,idx)
+                if(idx === -1) {
+                    break;
+                }
+                idx++;
+                count++;
+            }
+            count_el.innerText = count;
+        }
+    </script>
+</body>
+</html>

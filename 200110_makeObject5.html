@@ -1,0 +1,34 @@
+<!-- !+tab -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script>
+        var myObject = new Object();
+        console.log(myObject.constructor);
+
+        var myNumber = new Number(23);
+        console.log(myNumber.constructor);
+
+        var myString = new String('male');
+        console.log(myString.constructor);
+
+        var myBoolean = new Boolean(false);
+        console.log(myBoolean.constructor);
+
+        var myArray = new Array('foo', 'bar'); // 파이썬의 리스트
+        console.log(myArray.constructor);
+        console.log(myArray[0], myArray[1]);
+
+        var myDate = new Date(); // 객체다
+        console.log(myDate.constructor);
+        console.log(myDate);
+        
+        var myDate2 = Date(); // 문자열이다
+        console.log(myDate2);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

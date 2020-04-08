@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvas</title>
+    <style>
+        canvas {
+            border: 1px solid tomato;
+        }
+    </style>
+</head>
+<body>
+    <canvas width="200" height="100"></canvas>
+
+    <img id="img" src="./images/dog.jpg" alt="강아지">
+    
+    <script>
+        var canvas = document.querySelector("canvas");
+        var ctx = canvas.getContext("2d");
+        // 박스
+        ctx.fillStyle = "red";
+        ctx.fillRect(0, 0, 150, 75);
+        // 사선
+        ctx.moveTo(0, 0);
+        ctx.lineTo(200, 100);
+        ctx.stroke();
+        // 원
+        ctx.beginPath();
+        ctx.arc(95, 50, 40, 0, 2 * Math.PI); // x, y, r, start angle, end angle
+        ctx.stroke();
+        // text
+        ctx.font = "16px D2Coding";
+        ctx.fillText("hello", 150, 100);
+        // image
+        var img = document.querySelector("img");
+        ctx.drawImage(img, 0, 10);
+    </script>
+</body>
+</html>

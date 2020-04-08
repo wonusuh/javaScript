@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>계산기</title>
+    <link rel="stylesheet" href="./200203_fourCal.css">
+    <script src="./200203_fourCal.js"></script>
+</head>
+<body>
+    <div class="disp_Alert"></div>
+    <div class="calc">
+        <section>
+            <h1>My Calc</h1>
+            <div class="disp_Expr">
+                <!-- 입력값 표시 -->
+            </div>
+            <div class="disp_Rslt">
+                <!-- 계산결과 표시 -->
+            </div>
+            <div class="func">
+                <!-- 기능버튼 -->
+                <ul>
+                    <li><a class="btn_fnc" data-type="fnc" data-key=""></a></li>
+                    <li><a class="btn_fnc" data-type="fnc" data-key=""></a></li>
+                    <li><a class="btn_fnc" data-type="fnc" data-key="">Help</a></li>
+                    <li><a class="btn_fnc" data-type="fnc" data-key="">Hist</a></li>
+                </ul>
+            </div>
+            <div class="btns">
+                <!-- 입력 버튼 -->
+                <ul>
+                    <li><a class="btn_sgn" data-type="fnc" data-key="clr">AC</a></li>
+                    <li><a class="btn_sgn" data-type="sgn" data-key="(">(</a></li>
+                    <li><a class="btn_sgn" data-type="sgn" data-key=")">)</a></li>
+                    <li><a class="btn_sgn" data-type="fnc" data-key="bck">BS</a></li>
+                </ul>
+                <ul>
+                    <li><a class="btn_num" data-type="num" data-key="7">7</a></li>
+                    <li><a class="btn_num" data-type="num" data-key="8">8</a></li>
+                    <li><a class="btn_num" data-type="num" data-key="9">9</a></li>
+                    <li><a class="btn_sgn" data-type="sgn" data-key="/">/</a></li>
+                </ul>
+                <ul>
+                    <li><a class="btn_num" data-type="num" data-key="4">4</a></li>
+                    <li><a class="btn_num" data-type="num" data-key="5">5</a></li>
+                    <li><a class="btn_num" data-type="num" data-key="6">6</a></li>
+                    <li><a class="btn_sgn" data-type="sgn" data-key="*">x</a></li>
+                </ul>
+                <ul>
+                    <li><a class="btn_num" data-type="num" data-key="1">1</a></li>
+                    <li><a class="btn_num" data-type="num" data-key="2">2</a></li>
+                    <li><a class="btn_num" data-type="num" data-key="3">3</a></li>
+                    <li><a class="btn_sgn" data-type="sgn" data-key="-">-</a></li>
+                </ul>
+                <ul>
+                    <li><a class="btn_num" data-type="num" data-key="0">0</a></li>
+                    <li><a class="btn_sgn" data-type="fnc" data-key="=">=</a></li>
+                    <li><a class="btn_sgn" data-type="sgn" data-key="+">+</a></li>
+                </ul>
+            </div>
+        </section>
+        <aside>
+            <h1>History</h1>
+            <div class="disp_hist">
+                <!-- 입력 히스토리 -->
+            </div>
+        </aside>
+    </div>
+</body>
+</html>

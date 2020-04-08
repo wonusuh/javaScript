@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ggdOutput</title>
+    <style>
+        td {
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div id = "gugudan_id"></div>
+    <script>
+        var txt = "";
+        txt += "<table>";
+        for (j = 0; j < 2; j++) {
+            txt += "<tr>";
+            for (i = 2; i < 6; i++) {
+                var dan = i + (j * 4);
+                txt += "<td>";
+                txt += "=== <b>" + dan + "단</b> ===<br>";
+                for (k = 1; k < 10; k++) {
+                    console.log(k + " x " + dan + " = " + dan * k);
+                    txt += dan + " x " + k + " = " + dan * k + "<br>";
+                }
+                txt += "</td>";
+            }
+            txt += "</tr>";
+        }
+        txt += "</table>";
+        document.getElementById("gugudan_id").innerHTML = txt;
+    </script>
+</body>
+</html>

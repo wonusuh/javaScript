@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>whileLoop</title>
+</head>
+<body>
+    <script>
+        // arr.length는 5이므로 5회 반복을 한다.
+        // i값에 따라 횟수가 바뀐다.
+        var arr = ["a", "b", "c"];
+        for(var i = 0; i < arr.length; i++) {
+            console.log(arr[i]);
+            // arr[0]은 "a"가 된다.
+        }
+
+        // 조건이 참이면 코드블록을 실행
+        var arr2 = ["d", "e", "f"];
+        var k = 0;
+        while(k < arr2.length) {
+            console.log(arr2[k]);
+            k++;
+        }
+
+        // 최초 1회 실행 후
+        // 조건이 참이면 코드블록을 실행
+        var arr3 = ["g", "h", "i"];
+        var v = 0;
+        do {
+            console.log(arr3[v]);
+            v++;
+        }
+        while(v < arr3.length);
+    </script>
+</body>
+</html>

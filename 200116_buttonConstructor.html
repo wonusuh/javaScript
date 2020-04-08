@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="btn-group">
+
+        <button>0</button>
+
+        <button>1</button>
+
+    </div>
+
+    <script>
+
+        var btnGroup = document.getElementById('btn-group');
+
+        var btnCol = btnGroup.getElementsByTagName('button');
+
+        function Btn(val) {
+
+            var that = this;
+
+            that.val = val;
+
+            that.getVal = function() { alert(that.val); };
+
+            that.el = btnCol[val];
+
+            that.el.addEventListener('click', that.getVal);
+
+        }
+
+        var b0 = new Btn(0);
+
+        var b1 = new Btn(1);
+
+    </script>
+</body>
+</html>

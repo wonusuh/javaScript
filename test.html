@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+</head>
+<body>
+    <div>
+        <ul>
+            <li><label for="a_id">발사각</label>1<input type="range" id="a_id" value="7" min="1" max="9">9 <span id="aRng_id">7</span></li>
+            <li><label for="p_id">발사힘</label>0<input type="range" id="p_id" value="6" min="0" max="10">10 <span id="pRng_id">6</span></li>
+            <li><label for="g_id">중력</label>0<input type="range" id="g_id" value="1" min="0" max="10">10 <span id="gRng_id">1</span></li>
+            <li><label for="r_id">공기저항</label>0<input type="range" id="r_id" value="1" min="0" max="10">10 <span id="rRng_id">1</span></li>
+        </ul>
+    </div>
+    <script>
+        function component() {
+            this.a = parseFloat(document.querySelector("#a_id").value);
+            this.p = parseFloat(document.querySelector("#p_id").value);
+            this.g = parseFloat(document.querySelector("#g_id").value);
+            this.r = parseFloat(document.querySelector("#r_id").value);
+        }
+    </script>
+</body>
+</html>

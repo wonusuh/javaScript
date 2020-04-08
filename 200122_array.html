@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Array</title>
+</head>
+<body>
+    <h1>과일목록</h1>
+    <ul>
+        <li>바나나</li>
+        <li>오렌지</li>
+        <li>사과</li>
+        <li>망고</li>
+    </ul>
+    <div id="demo"></div>
+
+    <script>
+        var fruits, text, fLen, i;
+        fruits = ["바나나", "오렌지", "사과", "망고"];
+        text = "<ul>";
+        // 시작
+        for (i of fruits) {
+            text +=  "<li>" + i + "</li>";
+        }
+        // 끝
+        text +="</ul>";
+        document.getElementById("demo").innerHTML = text;
+    </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script>
+        // 전역변수
+        name = "사자";
+        //var name = "사자";
+
+        function callLocal() {
+            // 전역변수
+            name = "호랑이";
+            // 지역변수
+            var name2 = "강아지";
+            console.log(name); // 호랑이
+        }
+        callLocal();
+        console.log(name); // 사자
+    </script>
+
+</head>
+<body>
+    
+</body>
+</html>

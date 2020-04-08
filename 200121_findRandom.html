@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Random Number</title>
+    <style>
+        input { width: 3em; font-weight: bold; }
+        div { border: 1px solid blue; padding: 1em; }
+        td { vertical-align: top; }
+        #sameNums_id { font-size: 2em; word-break: break-all }
+        #randList_id { font-size: 0.8em; word-break: break-all }
+        button { font-size: 1.25em; font-weight: bold;}
+    </style>
+</head>
+<body>
+    <h1>배열에 두 개 이상이 포함된 숫자 찾기</h1>
+    <div>
+        <p>1부터 30까지 난수를 100개 만들고 같은 숫자가 몇개 있는지 찾아 본다.<br>
+            자바스크립트에서 소수점 난수를 만들기 위해 <strong>Math객체의 random()함수</strong>를 사용할 수 있다.</p>
+        <p><input type="text" id="min_id">부터 <input type="text" id="max_id">까지 난수<input type="text" id="len_id">개를 설정합니다.</p>
+        <p>설정이 되면 <button type="button" onclick="mainFn()">시작</button>을 클릭하세요.</p>
+    </div>
+    <table>
+        <tr>
+            <td id="sameNums_id"></td>
+            <td id="randList_id"></td>
+        </tr>
+    </table>
+<script>
+    // min ~ max 크기의 난수를 반환하는 함수
+    function getRandom(min, max) {
+        var rand = parseInt((Math.random() * (max - min + 1)) + min);
+        return rand;
+    }
+
+    // n개의 난수를 가지는 배열(Array) 생성
+    function makeRandomNumber(n, min, max) {
+        var randList = [];
+        for (var i = 0; i < n; i++) {
+            var rand = getRandom(min, max);
+            randList.push(rand);
+        }
+        return randList;
+    }
+
+    // 하나 이상을 포함하는 숫자는?
+    // 주어진 배열에서 지정된 숫자는 몇 개를 포함하는가를 찾는 함수
+    function findSameNum(n, lst) {
+        var count = 0;
+        for (var i of lst) {
+            if (n === i) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    // 스크립트 실행하기
+    var sourceList, sameNums;
+    function mainFn() {
+        var min, max, len;
+        sourceList = [];
+        sameNums = [];
+
+        min = parseInt(document.getElementById('min_id').value);
+        max = parseInt(document.getElementById('max_id').value);
+        len = parseInt(document.getElementById('len_id').value);
+
+        sourceList = makeRandomNumber(len, min, max);
+        
+        for (var i of sourceList) {
+            if (findSameNum(i, sourceList) > 1 && findSameNum(i, sameNums) < 1) {
+                sameNums.push(i);
+            }
+        }
+        console.log(sourceList);
+        console.log(sameNums);
+
+        document.getElementById("randList_id").innerText = sourceList;
+        document.getElementById("sameNums_id").innerText = sameNums;
+    }
+</script>
+</body>
+</html>

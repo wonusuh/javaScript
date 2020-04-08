@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>cannon</title>
+    </head>
+
+    <body onload="startGame()">
+        <br><button onmousedown="launch(-0.1)" onmouseup="launch(0.1)">launch</button><br>
+        <button onclick="field.reset()">restart</button>
+
+        <script>
+            var cannonBall;
+            var target;
+
+            function startGame() {
+                cannonBall = new component(20, 430, 20, 0, 2, "black");
+                target = new component(880, 225, 20, 0, 2, "tomato");
+                field.drawField();
+            }
+
+            var field = {
+                canvas : document.createElement("canvas"),
+                drawField : function() {
+                    this.canvas.width = 900;
+                    this.canvas.height = 450;
+                    this.canvas.style.backgroundColor = "#f1f1f1";
+                    this.context = this.canvas.getContext("2d");
+                    document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+                    this.interval = setInterval(updateField, 20);
+                },
+                clearField : function() {
+                    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                },
+                reset : function() {
+                    clearInterval(this.interval);
+                    startGame();
+                },
+            };
+
+            function component(x, y, r, startAngle, endAngle, color) {
+                this.x = x;
+                this.y = y;
+                this.r = r;
+                this.startAngle = startAngle;
+                this.endAngle = endAngle;
+                this.dir = 0.5;
+                this.speedX = 0;
+                this.speedY = 0;
+                this.g = 0.05;
+                this.gSpeed = 0;
+                this.t = 0.6;
+                this.w = 1;
+                this.m = 0.9;
+                this.wind = Math.random();
+                this.update = function() {
+                    ctx = field.context;
+                    ctx.beginPath();
+                    ctx.fillStyle = color;
+                    ctx.arc(this.x, this.y, this.r, this.startAngle, this.endAngle * Math.PI);
+                    ctx.fill();
+                    ctx.closePath();
+                }
+                this.cannonBallMoving = function() {
+                    this.gSpeed += this.g;
+                    this.x += this.speedX;
+                    this.y += this.speedY + this.gSpeed;
+                    this.hitBottom();
+                }
+                this.hitBottom = function() {
+                    var bottom = field.canvas.height - this.r;
+                    if (this.y > bottom) {
+                        this.y = bottom;
+                        this.speedX *= this.m;
+                        if (this.speedX < 0.0001) {
+                            this.speedX = 0;
+                        }
+                        this.gSpeed = -(this.gSpeed * this.t);
+                    }
+                }
+                this.targetMoving = function() {
+                    target.y += this.dir;
+                    if (this.y > field.canvas.height - this.r | this.y < this.r) {
+                        this.dir = this.dir * -1;
+                    }
+                }
+                this.crashWith = function(otherObj) {
+                    var distance = Math.sqrt(
+                        Math.pow((this.x - otherObj.x), 2)
+                        + Math.pow((this.y - otherObj.y), 2)
+                    );
+                    var radiusSum = this.r + otherObj.r;
+                    var crash = false;
+                    if (distance < radiusSum) {
+                        crash = true;
+                    }
+                    return crash;
+                }
+            }
+
+            function updateField() {
+                if (cannonBall.crashWith(target)) {
+                    field.reset();
+                }
+                else {
+                    field.clearField();
+    
+                    target.targetMoving();
+                    target.update();
+    
+                    cannonBall.cannonBallMoving();
+                    cannonBall.update();
+                }
+            }
+
+            function launch(n) {
+                cannonBall.speedX += 1;
+                cannonBall.g = n;
+            }
+        </script>
+    </body>
+</html>

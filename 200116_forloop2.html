@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script>
+        var person = {name:"han", color:"blue"};
+        // 객체의 값을 가져오는 두가지 방법 person.name, person["name"]
+        for(x in person) {
+            console.log(x); // name, color
+            console.log(person[x]); // han, blue
+        }
+        var person2 = ["han", "blue"];
+        for(x of person2) {
+            console.log(x); // han, blue
+            // console.log(person[x]); // han, blue
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sinCos</title>
+    <style>
+        canvas {
+            border: 1px solid blue;
+        }
+    </style>
+</head>
+<body onload="startGame()">
+    <script>
+        var myGamePiece, myScore;
+
+        function startGame() {
+            myGamePiece = new component(3, 30, "red", 250, 250);
+            myScore = new component("30px", "Consolas", "black", 280, 40, "text");
+            myGameArea.start();
+        }
+
+        var myGameArea = {
+            canvas : document.createElement("canvas"),
+            start : function() {
+                this.canvas.width = 500;
+                this.canvas.height = 500;
+                this.context = this.canvas.getContext("2d");
+                document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+                this.frameNo = 0;
+                this.interval = setInterval(updateGameArea, 20);
+            },
+            clear : function() {
+                this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            },
+        }
+
+        function component(width, height, color, x, y, type) {
+            this.type = type;
+            this.width = width;
+            this.height = height;
+            this.x = x;
+            this.y = y;
+            // this.angle = 0; //
+            this.angle = Math.PI / 4; //
+            this.update = function() {
+                ctx = myGameArea.context;
+                if (this.type == "text") {
+                    ctx.font = this.width + " " + this.height;
+                    ctx.fillStyle = color;
+                    ctx.fillText(this.text, this.x, this.y);
+                }
+                else {
+                    ctx.save(); // 현재 캔버스의 위치나 회전 등 환경을 저장
+                    ctx.translate(this.x, this.y);
+                    // 선그리기
+                    ctx.beginPath();
+                    ctx.moveTo(0, 0);
+                    this.lnX = Math.sin(this.angle) * 100; // cos()에 들어가는 인수는 라디안값
+                    // console.log(Math.sin(this.angle) * 100);
+                    this.lnY = -Math.cos(this.angle) * 100;
+                    ctx.lineTo(this.lnX, this.lnY);
+                    ctx.stroke();
+                    // 게임피스
+                    ctx.rotate(this.angle);
+                    ctx.fillStyle = color;
+                    ctx.fillRect(this.width / -2, this.height / -2, this.width, this.height);
+                    ctx.restore(); // 저장된 환경으로 복귀
+                }
+            }
+        }
+
+        function updateGameArea() {
+            myGameArea.clear();
+            myGamePiece.angle += 1 * Math.PI / 180; 
+            myGamePiece.update();
+            myGameArea.frameNo += 1;
+            myScore.text = "SCORE: " + myGameArea.frameNo;
+            myScore.update();
+        }
+    </script>
+</body>
+</html>

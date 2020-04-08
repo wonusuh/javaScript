@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script>
+        var CustomConstructor = function() {
+            this.foo = 'bar';
+        };
+
+        var instanceOfCustomConstructor = new CustomConstructor();
+
+        console.log(instanceOfCustomConstructor instanceof CustomConstructor);
+
+        console.log(new Array('foo') instanceof Array);
+
+        var Box = function() { this.box = []; };
+        var myBox = new Box();
+        myBox.box[0] = "사과";
+        myBox.box[1] = "배";
+        myBox.box[2] = "귤";
+    </script>
+    
+</head>
+<body>
+    
+</body>
+</html>

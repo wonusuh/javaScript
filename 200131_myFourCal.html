@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>myFourCal</title>
+</head>
+<style>
+    table {
+        text-align: center;
+        background-color: orange;
+    }
+</style>
+<body>
+    <table border="1">
+        <tr>
+            <td colspan="4">
+                <input type="text" id="display">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <input type="text" id="result">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3"><button onclick="ac()">AC</button></td>
+            <td><button onclick="f('/')">/</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="f('7')">7</button></td>
+            <td><button onclick="f('8')">8</button></td>
+            <td><button onclick="f('9')">9</button></td>
+            <td><button onclick="f('*')">x</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="f('4')">4</button></td>
+            <td><button onclick="f('5')">5</button></td>
+            <td><button onclick="f('6')">6</button></td>
+            <td><button onclick="f('-')">-</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="f('1')">1</button></td>
+            <td><button onclick="f('2')">2</button></td>
+            <td><button onclick="f('3')">3</button></td>
+            <td><button onclick="f('+')">+</button></td>
+        </tr>
+        <tr>
+            <td colspan="2"><button onclick="f('0')">0</button></td>
+            <td><button onclick="f('.')">.</button></td>
+            <td><button onclick="calculate()">=</button></td>
+        </tr>
+    </table>
+    <script>
+        // event: 버튼 0~9, +,-,x,=,AC
+        // 객체지향: 사칙연산, 생성자함수, 프로토타입
+        // 이수평가 -> "데이터입출력 구현"
+        function f(x) {
+            var display = document.getElementById("display");
+            display.value += x;
+        }
+        function ac() {
+            document.getElementById("display").value = "";
+            document.getElementById("result").value = "";
+        }
+        function calculate() {
+            var display = document.getElementById("display");
+            var result = eval(display.value); // 시간이 부족한 관계로 내장함수 eval() 을 사용했음
+            document.getElementById("result").value = result;
+        }
+    </script>
+</body>
+</html>

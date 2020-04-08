@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p id="demo"></p>
+
+    <button type="button" onclick="document.getElementById('demo')
+    .innerHTML = Date()">날짜 확인(getElementById)</button>
+
+    <button type="button" onclick="this.innerHTML = Date()">날짜 확인(this)</button>
+
+    <button type="button" onclick="displayDate()">날짜 확인(function)</button>
+    <script>
+        function displayDate() {
+            document.getElementById("demo").innerHTML = Date();
+        }
+    </script>
+</body>
+</html>

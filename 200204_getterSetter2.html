@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>getterSetter2</title>
+    <style>
+        #b1 {
+            position: fixed;
+            top: 100px;
+            left: 100px;
+        }
+    </style>
+</head>
+<body>
+    <button id="b1">1</button>
+    <button id="b2">2</button>
+</body>
+<script>
+    var posX = posY = 100;
+    // 요소를 가져온다.
+    var elb1 = document.getElementById("b1");
+    var elb2 = document.getElementById("b2");
+
+    // 이벤트 테스트
+    elb1.onclick = f;
+    elb2.onclick = f2;
+
+    elb1.style.top = posX + "px";
+    elb1.style.flef = posY + "px";
+
+    function f() {
+        // window.alert(elb1.innerText);
+        // elb2.innerText = elb2.innerText + 1;
+        posX += 20;
+        posY += 20;
+        elb1.style.top = posX + "px";
+        elb1.style.left = posY + "px";
+    }
+    function f2() {
+        // window.alert(elb1.innerText);
+        elb1.innerText = elb1.innerText + 1;
+    }
+</script>
+</html>

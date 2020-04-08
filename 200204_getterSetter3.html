@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>getterSetter3</title>
+</head>
+<body>
+    <button class="b">A</button>
+    <button class="b">B</button>
+    <button class="b">C</button>
+    <script>
+        var els = document.querySelectorAll(".b");
+        // els[0] value 는 A
+        var myO = [];
+        for(var i=0; i<myO.length; i++) {
+            en = {
+                el : els[i],
+                text : els[i].innerText,
+            }
+            myO.push(en);
+        }
+    </script>
+</body>
+</html>

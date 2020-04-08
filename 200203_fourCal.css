@@ -1,0 +1,50 @@
+* {
+  box-sizing: border-box; }
+
+ul {
+  padding: 0;
+  list-style: none; }
+
+.calc::after {
+  content: "";
+  display: block;
+  clear: both; }
+
+.calc section {
+  float: left; }
+  .calc section .disp_Expr {
+    height: 24px;
+    padding: 5px 0;
+    font-size: 14px; }
+  .calc section .disp_Rslt {
+    height: 40px;
+    padding: 0 0 10px 0;
+    font-size: 30px; }
+  .calc section .func ul,
+  .calc section .btns ul {
+    margin: 0; }
+    .calc section .func ul::after,
+    .calc section .btns ul::after {
+      content: "";
+      display: block;
+      clear: both; }
+    .calc section .func ul li,
+    .calc section .btns ul li {
+      float: left; }
+      .calc section .func ul li a,
+      .calc section .btns ul li a {
+        display: table-cell;
+        width: 50px;
+        height: 50px;
+        border: 1px solid lightblue;
+        text-align: center;
+        vertical-align: middle; }
+  .calc section .func ul li a {
+    height: 30px; }
+
+.calc aside {
+  float: left; }
+
+.calc div[class^="disp_"] {
+  color: #555;
+  background-color: antiquewhite; }

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>forLoop</title>
+</head>
+<body>
+    <script>
+        // arr.length는 5이므로 5회 반복을 한다.
+        // i값에 따라 횟수가 바뀐다.
+        var arr = ["a", "b", "c"];
+        for(var i = 0; i < arr.length; i++) {
+            console.log(arr[i]);
+            // arr[0]은 "a"가 된다.
+        }
+
+        // arr속성을 반복한다.
+        // arr의 경우 5회를 순환하며 이때 k는 key(인덱스)값을 가진다.
+        // 따라서 k는 0부터 4이다.
+        var arr2 = ["d", "e", "f"];
+        for(k in arr2) {
+        console.log(arr2[k]);
+        }
+
+        // arr속성을 반복한다.
+        // arr의 경우 5회를 순환하며 이때 k는 value값을 가진다.
+        // 따라서 v는 1부터 5이다.
+        var arr3 = ["g", "h", "i"];
+        for(v of arr3) {
+        console.log(v);
+        }
+    </script>
+</body>
+</html>

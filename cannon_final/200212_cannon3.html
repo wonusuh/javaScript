@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>cannon3</title>
+    </head>
+
+    <body onload="startGame()">
+        <br>
+        <button onclick="launch()">launch</button>
+        <button onclick="field.reset()">reset</button>
+
+        <script>
+            var cannonBall;
+            var target;
+
+            function startGame() {
+                cannonBall = new component(20, 430, 20, 0, 2, "grey");
+                target = new component(880, 225, 50, 0, 2, "tomato");
+                score = new component(280, 40, "30px", "Consolas", "text", "black");
+                field.drawField();
+            }
+
+            var field = {
+                canvas : document.createElement("canvas"),
+                drawField : function() {
+                    this.canvas.width = 1500;
+                    this.canvas.height = 450;
+                    this.canvas.style.backgroundColor = "#f1f1f1";
+                    this.context = this.canvas.getContext("2d");
+                    document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+                    this.interval = setInterval(updateField, 20);
+                },
+                clearField : function() {
+                    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                },
+                reset : function() {
+                    clearInterval(this.interval);
+                    startGame();
+                },
+            };
+
+            function component(x, y, r, startAngle, endAngle, color) {
+                this.x = x;
+                this.y = y;
+                this.r = r;
+                this.startAngle = startAngle;
+                this.endAngle = endAngle;
+                this.dir = -0.5;
+                this.speedX = 0;
+                this.speedY = 0;
+                this.g = 0.05;
+                this.gSpeed = 0;
+                this.t = 0.3;
+                this.w = 0.003;
+                this.m = 0.9;
+                this.wind = Math.random();
+                this.update = function() {
+                    var ctx = field.context;
+                    if (this.endAngle == "text") {
+                        ctx.font = this.r + " " + this.startAngle;
+                        ctx.fillStyle = color;
+                        ctx.fillText(this.text, this.x, this.y);
+                    }
+                    else {
+                        ctx.beginPath();
+                        ctx.fillStyle = color;
+                        ctx.arc(this.x, this.y, this.r, this.startAngle, (this.endAngle * Math.PI));
+                        ctx.fill();
+                        ctx.closePath();
+                    }
+                }
+                this.cannonBallMoving = function() {
+                    this.gSpeed += this.g;
+                    this.x += this.speedX;
+                    this.y += this.speedY + this.gSpeed;
+                    if (this.speedX > 0) {
+                        this.speedX -= this.w;
+                    }
+                    if (this.speedX < 0) {
+                        this.speedX += this.w;
+                    }
+                    this.speedX -= this.w;
+                    this.hitBottom();
+                }
+                this.targetMoving = function() {
+                    target.y += this.dir;
+                    if (this.y > field.canvas.height - this.r | this.y < this.r) {
+                        this.dir *= -1;
+                    }
+                }
+                this.hitBottom = function() {
+                    var bottom = field.canvas.height - this.r;
+                    if (this.y > bottom) {
+                        this.y = bottom;
+                        this.speedX *= this.m;
+                        if (this.speedX < 0.0001) {
+                            this.speedX = 0;
+                        }
+                        if (this.speedY < 0.0001) {
+                            this.speedY = 0;
+                        }
+                        this.gSpeed = -(this.gSpeed * this.t);
+                    }
+                }
+                this.hitTarget = function(otherObj) {
+                    var distance = Math.sqrt(
+                        Math.pow((this.x - otherObj.x), 2)
+                        + Math.pow((this.y - otherObj.y), 2)
+                    );
+                    var radiusSum = this.r + otherObj.r;
+                    var hit = false;
+                    if (distance < radiusSum) {
+                        hit = true;
+                    }
+                    return hit;
+                }
+            }
+
+            function updateField() {
+                var count = 0;
+                if (cannonBall.hitTarget(target)) {
+                    count += 1;
+                    score.text = "score: " + count;
+                    score.update();
+                    field.reset();
+                }
+                else {
+                field.clearField();
+
+                target.targetMoving();
+                target.update();
+
+                cannonBall.cannonBallMoving();
+                cannonBall.update();
+                }
+            }
+
+            function launch() {
+                var p = 5;
+                cannonBall.speedX += (p * Math.cos(Math.PI / 4));
+                cannonBall.speedY -= (p + Math.sin(Math.PI / 4));
+            }
+        </script>
+    </body>
+</html>

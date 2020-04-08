@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>getterSetter4</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+        }
+        #ctl_id {
+            background-color: lightgray;
+            width: 80px;
+            text-align: center;
+            font-weight: bold;
+            padding: 5px;
+        }
+        .ground {
+            display: inline-block;
+            border: 1px solid orange;
+            width: 500px;
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+    <div class="ground"></div>
+    <button id="me_id">Me</button>
+    <button id="hac_id">HC</button>
+    <div id="ctl_id">
+        <button>U</button><br>
+        <button>L</button>
+        <button>R</button><br>
+        <button>D</button>
+    </div>
+    <script>
+        var hac = {
+            STEP_SIZE: 50,
+            stepX : 7,
+            stepY : 7,
+            el : document.querySelector("#hac_id"),
+            init : function() {
+                this.el.style.position = "fixed";
+                this.el.style.top = this.stepY * this.STEP_SIZE + "px"; // stepX * 50
+                this.el.style.left = this.stepX * this.STEP_SIZE + "px"; // stepY * 50
+                this.el.style.width = this.STEP_SIZE + "px";
+                this.el.style.height = this.STEP_SIZE + "px";
+            },
+        };
+        var me = {
+            STEP_SIZE: 50,
+            stepX : 4,
+            stepY : 4,
+            el : document.querySelector("#me_id"),
+            init : function() {
+                this.el.style.position = "fixed";
+                this.el.style.top = this.stepY * this.STEP_SIZE + "px"; // stepX * 50
+                this.el.style.left = this.stepX * this.STEP_SIZE + "px"; // stepY * 50
+                this.el.style.width = this.STEP_SIZE + "px";
+                this.el.style.height = this.STEP_SIZE + "px";
+            },
+            stepUp : function() {
+                var targetStep = this.stepY - 1;
+                if(this.checkArea(targetStep)) {
+                this.stepY = targetStep;
+                }
+            },
+            stepDn : function() {
+                var targetStep = this.stepY + 1;
+                if(this.checkArea(targetStep)) {
+                this.stepY = this.stepY + 1;
+                }
+            },
+            stepLf : function() {
+                var targetStep = this.stepX - 1;
+                if(this.checkArea(targetStep)) {
+                this.stepX = this.stepX - 1;
+                }
+            },
+            stepRt : function() {
+                var targetStep = this.stepX + 1;
+                if(this.checkArea(targetStep)) {
+                this.stepX = this.stepX + 1;
+                }
+            },
+            move : function() {
+                if(this.checkColl()) {
+                window.alert("꽝~~~~~~");
+                }
+                this.el.style.left = this.stepX * this.STEP_SIZE + "px"; // stepX * 50
+                this.el.style.top = this.stepY * this.STEP_SIZE + "px"; // stepY * 50
+            },
+            checkArea : function(n) {
+                var result = true;
+                if (n < 0 || n > 9) { result = false; };
+                return result;
+            },
+            checkColl : function() {
+                var result = false;
+                if (this.stepX == hac.stepX && this.stepY == hac.stepY) { result = true; };
+                return result;
+            },
+        };
+        hac.init();
+        me.init();
+        // 컨트롤러
+        var btns = document.querySelectorAll("#ctl_id button")
+        // btns[0]은 U이고 이것은 Up
+        // stepUp ==> move
+        btns[0].onclick = btnClk;
+        btns[1].onclick = btnClk;
+        btns[2].onclick = btnClk;
+        btns[3].onclick = btnClk;
+        function btnClk() {
+            //console.log(this.innerText);
+            var btnName = this.innerText;
+            switch(btnName) {
+                case "U":
+                me.stepUp();
+                break;
+                case "L":
+                me.stepLf();
+                break;
+                case "R":
+                me.stepRt();
+                break;
+                case "D":
+                me.stepDn();
+                break;
+            }
+            // 공통
+            me.move();
+        }
+    </script>
+</body>
+</html>
